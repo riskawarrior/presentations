@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme"/>
     <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css"/>
     <script type="text/javascript">
-        document.write('<link rel="stylesheet" href="../reveal.js/css/print/' +
-        (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
     </script>
     <!--[if lt IE 9]>
     <script src="../reveal.js/lib/js/html5shiv.js"></script>
@@ -19,143 +24,278 @@
 </head>
 <body>
 <div class="reveal">
-    <!-- Any section element inside of this container is displayed as a slide -->
-    <div class="slides">
-        <!-- About -->
-        <section>
-            <h1>Symfony 2</h1>
-            <h2>An introduction and differences between Yii</h2>
-            <h3>András Rutkai</h3>
-        </section>
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<!-- About -->
+<section>
+    <h1>Symfony 2</h1>
 
-        <!-- Content -->
-        <section>
-            <h2>The architecture</h2>
-        </section>
-        <section>
-            <img style="background-color: #ffffff;" src="logo-composer-transparent.png" alt="Composer"/>
-            <p class="fragment">Who is this guy?</p>
-            <p class="fragment">He is the <strong>Composer</strong>!</p>
-        </section>
-        <section>
-            <h2>Dependency Injection (DI)</h2>
-            <p class="fragment">Dependency management</p>
-            <p class="fragment">Lazy initialisation</p>
-            <p class="fragment">Singletons which are managed by the framework</p>
-        </section>
-        <section>
-            <h2><s>M</s>VC</h2>
-            <p class="fragment">There are some models in the ORM, but</p>
-            <p class="fragment">we write the business logic in Services!</p>
-        </section>
-        <section>
-            <h2>Namespacing</h2>
-            <p class="fragment">Autoloader</p>
-            <p class="fragment">No more Hungarian notation</p>
-            <p class="fragment">No more pre-/postfixes</p>
-            <p class="fragment">Everything has its own place</p>
-        </section>
-        <section>
-            <h2>Modularity</h2>
-            <p class="fragment">Resources are belong to bundles (packages)</p>
-            <p class="fragment">Bundles belong to vendors</p>
-            <p class="fragment">Dependencies among bundles</p>
-        </section>
+    <h2>An introduction<br/>and differences between Yii</h2>
 
-        <section>
-            <h2>Further advantages</h2>
-        </section>
-        <section>
-            <h2>Doctrine</h2>
-            <p class="fragment">A real ORM system</p>
-            <p class="fragment">Tons of features</p>
-            <p class="fragment">Automatic database schema manipulation</p>
-            <p class="fragment">Similar to Hibernate</p>
-        </section>
-        <section>
-            <h2>Entity validation</h2>
-            <p class="fragment">Implicit</p>
-            <p class="fragment">OO custom validators</p>
-        </section>
-        <section>
-            <h2>Advanced routing</h2>
-            <p class="fragment">Routes are now don't have to be in module/controller/action format</p>
-            <p class="fragment">Url management by names</p>
-            <p class="fragment">URL parameter restrictions</p>
-            <p class="fragment">Automatic parameter conversion</p>
-        </section>
-        <section>
-            <h2>Templating with Twig</h2>
-            <p class="fragment">Easier syntax</p>
-            <p class="fragment">Restrictions in the view (e.g. no DB queries)</p>
-        </section>
-        <section>
-            <h2>Security</h2>
-            <p class="fragment">
-                Symfony firewall<br/>
-                <img src="security_authentication_authorization.png" alt="Authentication -> Authorization"/>
-            </p>
-            <p class="fragment">User roles</p>
-        </section>
-        <section>
-            <h2>Caching</h2>
-            <p class="fragment">Built in caching for big configuration files</p>
-            <p class="fragment">...and views</p>
-        </section>
-        <section>
-            <h2>Unit testing</h2>
-            <p class="fragment">It's easy through DI</p>
-            <p class="fragment">Semi-preconfigured PHPUnit</p>
-        </section>
-        <section>
-            <h2>The sizes</h2>
-            <p class="fragment">Tons of features</p>
-            <p class="fragment">Tons of plugins</p>
-            <p class="fragment">Huge community</p>
-        </section>
+    <h3>András Rutkai</h3>
+</section>
 
-        <section>
-            <h2>The bad</h2>
-        </section>
-        <section>
-            <h2>Caching (again)</h2>
-            <p class="fragment">It's a real pain in the ass during development</p>
-            <p class="fragment">Slow page loading in Dev mode because of the lack of caching</p>
-        </section>
-        <section>
-            <h2>Complexity</h2>
-            <p class="fragment">You have to know what you're doing unless you make a big mess</p>
-            <p class="fragment">This system requires a way more configurations than Yii</p>
-        </section>
-        <section>
-            <h2>The french</h2>
-        </section>
-        <section>
-            <h2>Widgets?</h2>
-            <p class="fragment">There are no widgets! No more JS hacking.</p>
-            <p class="fragment">No more self-initializer inputs :(</p>
-        </section>
+<!-- Content -->
+<section>
+    <h2>The architecture</h2>
+    <img src="Architect.jpg" alt="Architect"/>
+</section>
+<section>
+    <section>
+        <img style="background-color: #ffffff;" src="logo-composer-transparent.png" alt="Composer"/>
 
-        <section>
-            <h2>Conclusion?</h2>
-        </section>
-        <section>
-            <p>Changing framework is a nightmare</p>
-            <p class="fragment">but we could do BDD</p>
-            <p class="fragment">refactoring would be easier</p>
-            <p class="fragment">and we would have a much cleaner project</p>
-            <p class="fragment">without AR traps</p>
-            <p class="fragment">but smarter SQL queries.</p>
-        </section>
-        <section>
-            <h2>Share your opinions!</h2>
-        </section>
+        <p class="fragment">Who is this guy?</p>
 
-        <!-- Ending -->
-        <section>
-            <h1>Thank you!</h1>
-        </section>
-    </div>
+        <p class="fragment">He is the <strong>Composer</strong>!</p>
+    </section>
+    <section>
+        <h2>Dependency Injection (DI)</h2>
+
+        <p class="fragment">Dependency management</p>
+
+        <p class="fragment">Lazy initialisation</p>
+
+        <aside class="notes">
+            Függőség kezelés<br/>
+            Service-k injektálása, Swiftmailer, Database manager<br/>
+            A DI-olt osztályok csak egyeszer jönnek létre<br/>
+            Event handlerek!<br/>
+        </aside>
+    </section>
+    <section>
+        <h2><s>M</s>VC</h2>
+
+        <p class="fragment">
+            There are some models in the ORM, but<br/>
+            we write the business logic in Services!
+        </p>
+    </section>
+    <section>
+        <h2>Namespacing</h2>
+
+        <p class="fragment">Autoloader</p>
+
+        <p class="fragment">No more class pre-/postfixes</p>
+
+        <p class="fragment">Everything has its own place</p>
+
+        <aside class="notes">
+            Osztályok pre/postixelése.<br/>
+            PSR szabvány: PHP Standard Recommendations<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Modularity</h2>
+
+        <p class="fragment">Resources are belong to bundles (packages)</p>
+
+        <p class="fragment">Bundles belong to vendors</p>
+
+        <p class="fragment">Dependencies among bundles</p>
+
+        <aside class="notes">
+            Bundle öröklődés.<br/>
+            Bundle keresztbe hivatkozás hiba.<br/>
+        </aside>
+    </section>
+</section>
+
+<section>
+    <h2>More features</h2>
+    <img src="VaultBoyFO3.png" alt="Recommended"/>
+</section>
+<section>
+    <section>
+        <h2>Doctrine</h2>
+
+        <p class="fragment">A real ORM system</p>
+
+        <p class="fragment">Tons of features</p>
+
+        <p class="fragment">Automatic database schema manipulation</p>
+
+        <p class="fragment">Similar to Hibernate</p>
+
+        <aside class="notes">
+            Java beanek.<br/>
+            Entityk, annotáció, Repositoryk.<br/>
+            Request gyorsítótárazás.<br/>
+            Bonyolult subqueryk (DQL).<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Entity validation</h2>
+
+        <p class="fragment">Implicit</p>
+
+        <p class="fragment">OO custom validators</p>
+
+        <aside class="notes">
+            Rendesen renderelhető hibaüzenetek.<br/>
+            Annotáció.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Advanced routing</h2>
+
+        <p class="fragment">Routes are now don't have to be in module/controller/action format</p>
+
+        <p class="fragment">Url management by names</p>
+
+        <p class="fragment">URL parameter restrictions</p>
+
+        <p class="fragment">Automatic parameter conversion</p>
+
+        <aside class="notes">
+            Annotációk.<br/>
+            Paramconverter.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Templating with Twig</h2>
+
+        <p class="fragment">Easier syntax</p>
+
+        <p class="fragment">Restrictions in the view (e.g. no DB queries)</p>
+
+        <p class="fragment">OO templates?</p>
+
+        <aside class="notes">
+            Nincs minden PHP függvény engedélyezve.<br/>
+            Öröklődés a sablonok között, blokkok, részsablonok behúzása.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Security</h2>
+
+        <p class="fragment">
+            Symfony firewall<br/>
+            <img src="security_authentication_authorization.png" alt="Authentication -> Authorization"/>
+        </p>
+
+        <p class="fragment">User roles</p>
+
+        <aside class="notes">
+            FOS user management bundle.<br/>
+            Felhasználók authentikálása, jogosultságok kezelése.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Caching</h2>
+
+        <p class="fragment">Built in caching for big configuration files</p>
+
+        <p class="fragment">...and views</p>
+
+        <aside class="notes">
+            Configuration files, xml, yml, twig.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Unit testing</h2>
+
+        <p class="fragment">It's easy through DI</p>
+
+        <p class="fragment">Semi-preconfigured PHPUnit</p>
+
+        <p class="fragment">Datafixtures</p>
+
+        <aside class="notes">
+            A unit tesztek azonnal futtathatóak.<br/>
+            Code coverage report.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>The sizes</h2>
+
+        <p class="fragment">Tons of features</p>
+
+        <p class="fragment">Tons of plugins</p>
+
+        <p class="fragment">Huge community</p>
+
+        <aside class="notes">
+            Doctrine, Swiftmailer, Monolog, Twig.<br/>
+            FOS User, Sonata.<br/>
+            Verzió függőségek! Elavult lehet a symfony tőle => kézi migrálás kellhet<br/>
+        </aside>
+    </section>
+</section>
+
+<section>
+    <h2>The bad</h2>
+    <img src="Are-You-Fucking-Kidding-Me-Rage-Face-Meme-Temp.png" alt="You're kidding"/>
+</section>
+<section>
+    <section>
+        <h2>Caching (again)</h2>
+
+        <p class="fragment">It's a real pain in the ass during development</p>
+
+        <p class="fragment">Slow page loading in Dev mode because of the lack of caching</p>
+
+        <aside class="notes">
+            XML, YML gyorsítótárazás dev módban, nem működő változtatások.<br/>
+            Lassú dev betöltés.<br/>
+            Nagyon jó dev debug bar!<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Complexity</h2>
+
+        <p class="fragment">You have to know what you're doing unless you make a big mess</p>
+
+        <p class="fragment">This system requires a way more configurations than Yii</p>
+
+        <aside class="notes">
+            Mindennek helye van.<br/>
+            Assetic és konzolos commandok szívás.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>The french</h2>
+
+        <aside class="notes">
+            Visszafelé kompatibilitás.<br/>
+            Architektúrális változtatások.<br/>
+        </aside>
+    </section>
+    <section>
+        <h2>Widgets?</h2>
+
+        <p class="fragment">There are no widgets! No more JS hacking.</p>
+
+        <p class="fragment">No more self-initializer inputs :(</p>
+    </section>
+</section>
+
+<section>
+    <h2>Conclusion?</h2>
+</section>
+<section>
+    <section>
+        <p>Changing framework is a nightmare</p>
+
+        <p class="fragment">but we could do TDD</p>
+
+        <p class="fragment">refactoring would be easier</p>
+
+        <p class="fragment">and we would have a much cleaner project</p>
+
+        <p class="fragment">without AR traps</p>
+
+        <p class="fragment">but smarter SQL queries.</p>
+    </section>
+    <section>
+        <h2>Share your opinions!</h2>
+    </section>
+</section>
+
+<!-- Ending -->
+<section>
+    <h1>Thank you!</h1>
+</section>
+</div>
 </div>
 <script src="../reveal.js/lib/js/head.min.js" type="text/javascript"></script>
 <script src="../reveal.js/js/reveal.min.js" type="text/javascript"></script>
@@ -175,32 +315,32 @@
 // Optional libraries used to extend on reveal.js
         dependencies: [
             {
-                src: '../reveal/lib/js/classList.js', condition: function () {
+                src: '../reveal.js/lib/js/classList.js', condition: function () {
                 return !document.body.classList;
             }
             },
             {
-                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                src: '../reveal.js/plugin/markdown/marked.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             }
             },
             {
-                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             }
             },
             {
-                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
                 hljs.initHighlightingOnLoad();
             }
             },
             {
-                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
                 return !!document.body.classList;
             }
             },
             {
-                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
                 return !!document.body.classList;
             }
             }
