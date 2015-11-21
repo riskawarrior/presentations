@@ -6,7 +6,7 @@
     <meta name="author" content="András Rutkai"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Building a highly secure, cheap secondary backup from scratch</title>
-    <link rel="stylesheet" href="../reveal.js/css/reveal.min.css"/>
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
     <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme"/>
     <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css"/>
     <script type="text/javascript">
@@ -21,6 +21,7 @@
     <!--[if lt IE 9]>
     <script src="../reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
+    <script src="../reveal.js/lib/js/head.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="reveal">
@@ -295,7 +296,9 @@
 
         <p class="fragment">8-9W on load</p>
 
-        <p class="fragment">2W on idle</p>
+        <p class="fragment">4W on idle</p>
+
+        <p class="fragment">2W on sleep</p>
     </section>
 </section>
 
@@ -309,8 +312,7 @@
 </section>
 </div>
 </div>
-<script src="../reveal.js/lib/js/head.min.js" type="text/javascript"></script>
-<script src="../reveal.js/js/reveal.min.js" type="text/javascript"></script>
+<script src="../reveal.js/js/reveal.js" type="text/javascript"></script>
 <script>
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
