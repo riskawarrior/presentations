@@ -28,7 +28,7 @@
     <div class="slides">
         <!-- About -->
         <section>
-            <h1>Faking an authentication server</h1>
+            <h1>Creating a fake authentication server</h1>
 
             <h2>SSL? Digital signatures? Who cares?!</h2>
 
@@ -62,24 +62,15 @@
             <p>Usually you get a client and you can play on dedicated servers.</p>
 
             <p>But in Minecraft you can get and maintain a server as well!</p>
-        </section>
-        <section>
-            <h2>The turning point</h2>
 
-            <p>Minecraft was originally developed by Notch</p>
-
-            <p>later by his company: Mojang (2009)</p>
-
-            <p class="fragment">aaaand it was bought by Microsoft in 2014.</p>
-
-            <p class="fragment">But who can trust in Microsoft?</p>
+            <img src="Temple.png"/>
         </section>
         <section>
             <h2>The motivation</h2>
 
-            <p>I want to use the old client and server together without MS' "improvements".</p>
+            <p>I want to use the old client and server together without depending on the vendor.</p>
 
-            <p>But I still need an authentication server for them (to stay in online mode).</p>
+            <p>So I need an authentication server for it (to stay in online mode).</p>
         </section>
         <section>
             <p>Then I've found the API documentation of the auth server.</p>
@@ -100,16 +91,25 @@
                 <li class="fragment">Parameters</li>
                 <li class="fragment">Responses</li>
             </ul>
+            <p class="fragment">
+                <img src="documentation.png"/>
+            </p>
             <p class="fragment">This should be a piece of cake!</p>
         </section>
         <section>
             <h2>But it's never that easy</h2>
 
-            <p class="fragment">The server's endpoints are hard-coded.</p>
+            <p class="fragment">
+                The server's endpoints are hard-coded.
+                <img src="hardcoded_url.png"/>
+            </p>
 
             <p class="fragment">The server uses a signed HTTPS connection.</p>
 
-            <p class="fragment">A few packets are signed with a private key.</p>
+            <p class="fragment">
+                A few packets are signed with a private key.
+                <img src="signature_check.png"/>
+            </p>
         </section>
         <section>
             <h2>The Server</h2>
@@ -118,7 +118,7 @@
 
             <p>This makes the backend language obvious: Node.js (awesomely faaast)</p>
 
-            <p>The database will be MongoDB (this one too)</p>
+            <p>The database will be MongoDB</p>
             <img src="tests.png" alt="Node tests"/>
         </section>
         <section>
@@ -126,7 +126,10 @@
 
             <p>How to redirect the data from a valid domain to another?</p>
 
-            <p class="fragment">Easy: put a new entry in the hosts file!</p>
+            <p class="fragment">
+                Easy: put a new entry in the hosts file!<br/>
+                <img src="hosts.png"/>
+            </p>
 
             <p class="fragment">Works like a charm. :)</p>
         </section>
@@ -137,11 +140,11 @@
 
             <p>We can create a self-signed certificate only.</p>
 
-            <p>Java doesn't accept a self signed certificate. :(</p>
+            <p class="fragment">Java doesn't accept a self signed certificate. :(</p>
 
-            <p>I had to find a way to sign that certificate somehow,</p>
+            <p class="fragment">I had to find a way to sign that certificate somehow,</p>
 
-            <p>but how can I sign a certificate for a domain, I don't own? :)</p>
+            <p class="fragment">but how can I sign a certificate for a domain, I don't own? :)</p>
         </section>
         <section>
             <h2>Just trust me</h2>
@@ -157,11 +160,14 @@
         <section>
             <h2>What about the packet signature?</h2>
 
-            <p>There are a few endpoints which are signed with a private key.</p>
+            <p>
+                There are a few endpoints which are signed with a private key.
+                <img src="signature.png"/>
+            </p>
 
-            <p>Obviously, there is no way to obtain the private key.</p>
+            <p class="fragment">Obviously, there is no way to obtain the private key.</p>
 
-            <p>Then how to sign it?!</p>
+            <p class="fragment">Then how to sign it?!</p>
         </section>
         <section>
             <h2>The public key</h2>
@@ -180,7 +186,7 @@
 
             <p>But in which language? We should use a cross platform language which is probably pre-installed on most machines.</p>
 
-            <p class="fragment">...yes, Java.</p>
+            <p class="fragment"><img src="java.jpg"/></p>
         </section>
         <section>
             <h2>Repacking the jars</h2>
@@ -217,11 +223,13 @@
             <p class="fragment">Fortunately, Java doesn't mind if I skip "a few" files from the archive, e.g. the signatures.</p>
 
             <p class="fragment">:)))))))))))))))))))</p>
+
+            <p class="fragment"><img src="facepalm.jpg"/></p>
         </section>
         <section>
             <h2>Signatures everywhere!</h2>
 
-            <p>However, I still haven't done yet.</p>
+            <p>However, I'm still not done yet.</p>
 
             <p>I've found a public key in the server's jar and in a library too!</p>
 
@@ -243,8 +251,8 @@
             <h1>Thank you!</h1>
 
             <ul>
-                <li>Github?</li>
-                <li>Blog post?</li>
+                <li>Github:<br/>https://github.com/riskawarrior/Mjolnir-Authentication-Server</li>
+                <li>Blog post:<br/>http://rutkai.hu/2016/01/22/creating-a-fake-authentication-system</li>
             </ul>
         </section>
     </div>
