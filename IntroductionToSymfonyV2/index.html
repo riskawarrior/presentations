@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="For my colleagues who work in Yii and want to change to something testable."/>
+    <meta name="author" content="András Rutkai"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Introduction to Symfony</title>
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+    <link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme"/>
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css"/>
+    <script type="text/javascript">
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script src="../reveal.js/lib/js/head.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="reveal">
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<!-- About -->
+<section>
+    <h1>Symfony REST stack</h1>
+
+    <h2>Introduction to Symfony REST stack</h2>
+
+    <h3>by András Rutkai</h3>
+</section>
+
+<!-- Content -->
+<section>
+    <img src="backend_frontend.png" alt="Backend/Frontend"/>
+</section>
+<section>
+    <h2>The backend</h2>
+    <img src="Backend.jpg" alt="Backend developer"/>
+</section>
+<section>
+    <h2>The architecture</h2>
+    <img src="Architect.jpg" alt="Architect"/>
+</section>
+<section>
+    <section>
+        <img style="background-color: #ffffff;" src="logo-composer-transparent.png" alt="Composer"/>
+
+        <p>Uses <strong>Composer</strong>!</p>
+    </section>
+    <section>
+        <h2>Dependency Injection (DI)</h2>
+
+        <p class="fragment">Dependency management</p>
+
+        <p class="fragment">Lazy initialisation</p>
+    </section>
+    <section>
+        <h2>MVC/S?</h2>
+
+        <p class="fragment">
+            There are some models in the ORM, but<br/>
+            we write the business logic in Services!
+        </p>
+    </section>
+    <section>
+        <h2>Modularity</h2>
+
+        <p class="fragment">Resources belong to bundles (packages)</p>
+
+        <p class="fragment">Bundles belong to vendors</p>
+
+        <p class="fragment">Dependencies among bundles</p>
+    </section>
+</section>
+
+<section>
+    <h2>More features</h2>
+    <img src="VaultBoyFO3.png" alt="Recommended"/>
+</section>
+<section>
+    <section>
+        <h2>Doctrine</h2>
+
+        <p class="fragment">A real ORM system</p>
+
+        <p class="fragment">Tons of features</p>
+
+        <p class="fragment">Automatic database schema manipulation (schema update, migrations)</p>
+    </section>
+    <section>
+        <h2>Entity validation</h2>
+
+        <p class="fragment">Validator annotations</p>
+
+        <p class="fragment">Implicit validation upon form processing</p>
+    </section>
+    <section>
+        <h2>Advanced routing</h2>
+
+        <p class="fragment">Routing in annotations but can be generated implicitly (REST resources)</p>
+
+        <p class="fragment">Url management by names</p>
+
+        <p class="fragment">Url parameter restrictions</p>
+
+        <p class="fragment">Automatic parameter conversion</p>
+    </section>
+    <section>
+        <h2>Templating with Twig</h2>
+
+        <p class="fragment">Easier syntax</p>
+
+        <p class="fragment">Restrictions in the view (e.g. no DB queries)</p>
+
+        <p class="fragment">OO-like templates</p>
+    </section>
+    <section>
+        <h2>Security</h2>
+
+        <p class="fragment">
+            Symfony firewall<br/>
+            <img src="security_authentication_authorization.png" alt="Authentication -> Authorization"/>
+        </p>
+
+        <p class="fragment">User roles, role hierarchy</p>
+    </section>
+    <section>
+        <h2>Caching</h2>
+
+        <p class="fragment">Built in caching for big configuration files, annotations, DI...</p>
+
+        <p class="fragment">...and views</p>
+    </section>
+    <section>
+        <h2>Unit testing</h2>
+
+        <p class="fragment">It's easy through DI</p>
+
+        <p class="fragment">Preconfigured PHPUnit</p>
+
+        <p class="fragment">Datafixtures</p>
+    </section>
+    <section>
+        <h2>Functional testing</h2>
+
+        <p class="fragment">I prefer Behat (w/ Gherkin)</p>
+
+        <p class="fragment">Datafixtures</p>
+    </section>
+    <section>
+        <h2>Debugging</h2>
+
+        <p class="fragment">
+            <img src="Sf-debug.png" alt="Debug bar"/><br/>
+            Symfony dev bar
+        </p>
+    </section>
+    <section>
+        <h2>The sizes</h2>
+
+        <p class="fragment">Tons of features</p>
+
+        <p class="fragment">Tons of plugins</p>
+
+        <p class="fragment">Huge community</p>
+    </section>
+</section>
+
+<section>
+    <h2>The bad</h2>
+    <img src="Are-You-Fucking-Kidding-Me-Rage-Face-Meme-Temp.png" alt="You're kidding"/>
+</section>
+<section>
+    <section>
+        <h2>Caching (again)</h2>
+
+        <p class="fragment">It can be a real pain in the ass during development</p>
+
+        <p class="fragment">Slow page loading in Dev mode because of the lack of caching</p>
+    </section>
+    <section>
+        <h2>Complexity</h2>
+
+        <p class="fragment">You have to know what you're doing unless you make a big mess</p>
+
+        <p class="fragment">Requires quite a lot configuration (one-time)</p>
+    </section>
+</section>
+<section>
+    <h2>Let's see in action!</h2>
+</section>
+
+<section>
+    <h2>The frontend</h2>
+</section>
+<section>
+    <h2>React.js</h2>
+
+    <p class="fragment">Better performance w/ virtual DOM</p>
+
+    <p class="fragment">Easy to learn</p>
+</section>
+<section>
+    <h2>Redux</h2>
+
+    <img src="react-redux-diagram.png" alt="Redux concept"/>
+
+    <p class="fragment">Unit testable!</p>
+</section>
+<section>
+    <h2>Let's see in action!</h2>
+</section>
+
+<section>
+    <h2>Conclusion?</h2>
+
+    <h3>Share your opinions!</h3>
+</section>
+
+<!-- Ending -->
+<section>
+    <h2>Thank you!</h2>
+</section>
+</div>
+</div>
+<script src="../reveal.js/js/reveal.js" type="text/javascript"></script>
+<script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+// Parallax scrolling
+// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+// parallaxBackgroundSize: '2100px 900px',
+// Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+</script>
+</body>
+</html>
